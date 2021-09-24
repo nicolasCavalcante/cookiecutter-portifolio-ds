@@ -12,13 +12,23 @@ def syscmd(string):
 
 def task_devinstall():
     """install development packages"""
-    for req in 'dev', 'prod':
-        yield {
-            'name': f'install {req} requeirments',
-            'actions': ['pip install -r requirements/%s.txt' % req],
-            'verbosity': 2,
-            'file_dep': [Path('requirements/' + req + '.txt')]
-        }
+    yield {
+        'name': 'install editable package',
+        'actions': [lambda: syscmd('pip install -e "' + str(SELF_PATH) + '"')],
+        'verbosity': 2,
+        'file_dep': [SELF_PATH / 'setup.py']
+    }
+    yield {
+        'name':
+        'install development requeirments',
+        'actions': [
+            lambda: syscmd('pip install -r "' + str(
+                SELF_PATH / 'requirements/dev.txt') + '"')
+        ],
+        'verbosity':
+        2,
+        'file_dep': [SELF_PATH / 'requirements/dev.txt']
+    }
 
 
 def task_autopep():
