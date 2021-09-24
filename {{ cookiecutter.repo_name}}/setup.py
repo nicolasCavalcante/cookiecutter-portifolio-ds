@@ -22,11 +22,7 @@ setup(
     description='',
     author="{{ cookiecutter.full_name.replace('\"', '\\\"') }}",
     author_email='{{ cookiecutter.email }}',
-    packages=find_packages(include=[
-        'p01_Business_Question', 'p02_Data_Colection', 'p03_Data_Cleaning',
-        'p04_Exploratory_Data_Analysis', 'p05_Feature_Engineering',
-        'p06_Model_Selection', 'p07_Model_Evaluation', 'p08_Deployment'
-    ]),
+    packages=find_packages(include=['{{ cookiecutter.repo_name }}', '{{ cookiecutter.repo_name }}.*']),
     include_package_data=True,
     install_requires=read(SELF_PATH / 'requirements/prod.txt').splitlines(),
 {%- if cookiecutter.open_source_license in license_classifiers %}
