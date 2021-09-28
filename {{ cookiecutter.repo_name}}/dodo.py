@@ -10,27 +10,6 @@ def syscmd(string):
     return True
 
 
-def task_devinstall():
-    """install development packages"""
-    yield {
-        'name': 'install editable package',
-        'actions': [lambda: syscmd('pip install -e "' + str(SELF_PATH) + '"')],
-        'verbosity': 2,
-        'file_dep': [SELF_PATH / 'setup.py']
-    }
-    yield {
-        'name':
-        'install development requeirments',
-        'actions': [
-            lambda: syscmd('pip install -r "' + str(
-                SELF_PATH / 'requirements/dev.txt') + '"')
-        ],
-        'verbosity':
-        2,
-        'file_dep': [SELF_PATH / 'requirements/dev.txt']
-    }
-
-
 def task_autopep():
     """lint codebase using yapf acording to PEP8"""
     def autopep(filepath: Path):

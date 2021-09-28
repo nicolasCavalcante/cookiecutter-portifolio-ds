@@ -1,4 +1,0 @@
-yapf
-flake8
-pytest-testmon
-pandasgui

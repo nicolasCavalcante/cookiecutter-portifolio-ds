@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+{{ cookiecutter.repo_name}} = {editable = true, path = "."}
+
+[dev-packages]
+yapf = "*"
+flake8 = "*"
+pytest-testmon = "*"
+pandasgui = "*"
+doit = "*"
+
+[requires]
+python_version = "3.7"

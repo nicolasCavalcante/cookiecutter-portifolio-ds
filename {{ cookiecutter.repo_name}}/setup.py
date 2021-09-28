@@ -24,7 +24,6 @@ setup(
     author_email='{{ cookiecutter.email }}',
     packages=find_packages(include=['{{ cookiecutter.repo_name }}', '{{ cookiecutter.repo_name }}.*']),
     include_package_data=True,
-    install_requires=read(SELF_PATH / 'requirements/prod.txt').splitlines(),
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license="{{ cookiecutter.open_source_license }}",
 {%- endif %}
