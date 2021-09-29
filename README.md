@@ -74,19 +74,9 @@ This is our your new project will look like:
                 predict.py
                 train.py
 ## Data Science Process
-```mermaid
-stateDiagram
-    Business_Problem --> Solution_Planning
-    Solution_Planning --> Data_Collection
-    Data_Collection --> Data_Cleanning
-    Data_Cleanning --> EDA
-    EDA --> Feature_Engineering
-    Feature_Engineering --> Data_Preparation
-    Data_Preparation --> Model_Selection
-    Model_Selection --> Model_Evaluation
-    Model_Evaluation --> Data_Collection
-    Model_Evaluation --> Model_Deployment
-```
+
+![alt text](diagram.svg)
+
 ### Business Problem
 Description of the business problem to be solved using data science
 ### Solution Planning
