@@ -20,7 +20,7 @@ def read(path: Path):
 
 setup(
     name='{{ cookiecutter.repo_name }}',
-    description='',
+    description='{{ cookiecutter.description }}',
     author="{{ cookiecutter.full_name.replace('\"', '\\\"') }}",
     author_email='{{ cookiecutter.email }}',
     packages=find_packages(include=['{{ cookiecutter.repo_name }}', '{{ cookiecutter.repo_name }}.*']),

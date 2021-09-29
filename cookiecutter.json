@@ -4,6 +4,7 @@
     "full_name": "Nicolas Garcia Cavalcante",
     "email": "nicolasgcavalcante@gmail.com",
     "github_username": "nicolasCavalcante",
+    "description": "A short description of the project.",
     "open_source_license": [
         "MIT license",
         "BSD license",
@@ -11,5 +12,9 @@
         "Apache Software License 2.0",
         "GNU General Public License v3",
         "Not open source"
+    ],
+    "setup_project": [
+        "Yes - select this",
+        "No - for testing purposes only"
     ]
 }

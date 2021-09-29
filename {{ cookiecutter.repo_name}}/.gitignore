@@ -1,8 +1,6 @@
 __pycache__
 .vscode
 .doit.db*
-.testmondata
-*.egg-info
 *.csv
 
 # Byte-compiled / optimized / DLL files
