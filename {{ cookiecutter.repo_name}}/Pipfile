@@ -5,12 +5,16 @@ name = "pypi"
 
 [packages]
 {{ cookiecutter.repo_name}} = {editable = true, path = "."}
+scikit-learn = ">=1.0"
+pandasgui = "*"
+mlflow = "*"
 
 [dev-packages]
-yapf = "*"
+isort = "*"
+pytest = "*"
 flake8 = "*"
-pytest-testmon = "*"
-pandasgui = "*"
+yapf = "*"
+autoflake = "*"
 doit = "*"
 
 [requires]

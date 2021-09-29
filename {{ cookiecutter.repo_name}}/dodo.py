@@ -1,42 +1,31 @@
-from pathlib import Path
+import platform
 import subprocess
+from pathlib import Path
+
+CMD_SEP = '&' if platform.system() == 'Windows' else ';'
 
 SELF_PATH = Path(__file__).parent.absolute()
-# DOIT_CONFIG = {'default_tasks': ['devinstall', 'autopep']}
+spathsrt = '"%s/"' % SELF_PATH.as_posix()
+# DOIT_CONFIG = {'default_tasks': ['format', 'pytest']}
 
 
 def syscmd(string):
-    subprocess.check_call(string, shell=True)
+    subprocess.call(string, shell=True)
     return True
 
 
-def task_autopep():
-    """lint codebase using yapf acording to PEP8"""
-    def autopep(filepath: Path):
-        from yapf.yapflib.yapf_api import FormatFile
-        FormatFile(str(filepath), in_place=True)
-
-    nparts = len(SELF_PATH.parts)
-    for filepath in SELF_PATH.glob('**/*.py'):
-        yield {
-            'name': '/'.join(filepath.parts[nparts:]),
-            'actions': [(autopep, [], {
-                'filepath': filepath
-            })],
-            'file_dep': [filepath]
-        }
+def task_format():
+    return {
+        'actions': [
+            'autoflake -i -r --expand-star-imports --remove-all-unused-imports'
+            + ' --remove-duplicate-keys --remove-unused-variables .' +
+            ' %s isort . %s yapf -i -r .' % (CMD_SEP, CMD_SEP)
+        ],
+        'verbosity':
+        2
+    }
 
 
-def task_pytests():
+def task_pytest():
     """run pytests under tests folder"""
-
-    path = SELF_PATH / 'tests'
-    nparts = len(path.parts)
-    for filepath in (x for x in SELF_PATH.glob('**/*.py') if 'test' in x.name):
-        if not filepath.is_file():
-            continue
-        yield {
-            'name': '/'.join(filepath.parts[nparts:]),
-            'actions': [lambda: syscmd(f'pytest --testmon "{filepath}"')],
-            'verbosity': 2
-        }
+    return {'actions': [lambda: syscmd('pytest tests/')], 'verbosity': 2}
