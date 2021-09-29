@@ -3,5 +3,5 @@
 
 ## Getting Started
 
-    pipenv shell
     pipenv install --dev
+    pipenv shell
