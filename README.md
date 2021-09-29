@@ -106,8 +106,11 @@ Turn the model acessible by others
 
 #### References:
 https://github.com/drivendata/cookiecutter-data-science
+
 https://github.com/crmne/cookiecutter-modern-datascience
+
 https://github.com/sourcery-ai/python-best-practices-cookiecutter
+
 https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55
 
 [Cookiecutter]: https://github.com/audreyr/cookiecutter
