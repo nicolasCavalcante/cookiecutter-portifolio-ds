@@ -6,7 +6,8 @@ from {{cookiecutter.repo_name}}.utils import MLFLOW_DIR
 
 CMD_SEP = '&' if platform.system() == 'Windows' else ';'
 SELF_PATH = Path(__file__).parent.absolute()
-DOIT_CONFIG = {'default_tasks': ['nodes', 'format', 'pytest']}
+NBS_PATH = SELF_PATH / 'notebooks'
+DOIT_CONFIG = {'default_tasks': ['nodes', 'format', 'formatnb', 'pytest']}
 
 
 def syscmd(string):
@@ -29,6 +30,22 @@ def task_format():
               ' --remove-duplicate-keys --remove-unused-variables %s' +
               ' %s isort %s %s yapf -i -r %s') %
              (filepath, CMD_SEP, filepath, CMD_SEP, filepath)],
+            'file_dep': [filepath],
+            'verbosity':
+            2
+        }
+
+
+def task_formatnb():
+    """makes notebooks organized and pretty"""
+    nparts = len(NBS_PATH.parts)
+    for filepath in NBS_PATH.glob('*.ipynb'):
+        filename = filepath.as_posix()
+        yield {
+            'name':
+            '/'.join(filepath.parts[nparts:]),
+            'actions': [('nbqa isort "%s" %s nbqa yapf -i -r "%s"') %
+                        (filename, CMD_SEP, filename)],
             'file_dep': [filepath],
             'verbosity':
             2
