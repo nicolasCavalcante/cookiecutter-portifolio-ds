@@ -11,5 +11,5 @@ if "{{ cookiecutter.setup_project }}" == "Yes - select this":
     subprocess.call(['git', 'init'])
     subprocess.call(['git', 'add', '*'])
     subprocess.call(['git', 'commit', '-m', 'Initial commit'])
-    subprocess.call(['pipenv', 'install', '--dev'])
+    subprocess.call(['pipenv', 'install', '--dev', '--skip-lock'])
     subprocess.call(['pipenv', 'shell'])
