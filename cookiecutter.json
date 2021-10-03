@@ -1,10 +1,10 @@
 {
-    "project_name": "project_name",
+    "project_name": "Iris Flower",
     "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "full_name": "Nicolas Garcia Cavalcante",
     "email": "nicolasgcavalcante@gmail.com",
     "github_username": "nicolasCavalcante",
-    "description": "A short description of the project.",
+    "description": "Predict flower species from geometric properties",
     "open_source_license": [
         "MIT license",
         "BSD license",
