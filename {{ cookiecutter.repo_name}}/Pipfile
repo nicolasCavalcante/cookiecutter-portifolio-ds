@@ -8,6 +8,8 @@ name = "pypi"
 scikit-learn = ">=1.0"
 pandasgui = "*"
 mlflow = "*"
+ipykernel = "*"
+seaborn = "*"
 
 [dev-packages]
 isort = "*"

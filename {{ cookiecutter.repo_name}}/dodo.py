@@ -6,7 +6,7 @@ from {{cookiecutter.repo_name}}.utils import MLFLOW_DIR
 
 CMD_SEP = '&' if platform.system() == 'Windows' else ';'
 SELF_PATH = Path(__file__).parent.absolute()
-DOIT_CONFIG = {'default_tasks': ['format', 'pytest']}
+DOIT_CONFIG = {'default_tasks': ['nodes', 'format', 'pytest']}
 
 
 def syscmd(string):
@@ -48,3 +48,30 @@ def task_ui():
         'verbosity':
         2
     }
+
+
+def task_nodes():
+    """fix nodes __init__ imports"""
+    NODES_PATH = Path(__file__).parent / '{{cookiecutter.repo_name}}/nodes'
+    paths = [p for p in NODES_PATH.glob('*.py') if p.stem != '__init__']
+    modules = [p.stem for p in paths]
+
+    def nodes():
+
+        new_init_content = ''
+
+        for module in modules:
+            new_init_content += f'from .{module} import {module}\n'
+
+        new_init_content += '\n__all__ = ['
+        for module in modules:
+            new_init_content += f"'{module}', "
+
+        new_init_content = new_init_content[:-2]
+        new_init_content += ']\n'
+        print(new_init_content)
+
+        with open(NODES_PATH / '__init__.py', 'w') as f:
+            f.write(new_init_content)
+
+    return {'actions': [nodes], 'file_dep': paths}
